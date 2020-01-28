@@ -56,3 +56,28 @@ s.push(10)
 s.push(77)
 
 console.log(s.size())
+
+// 十进制转化二进制
+function dec2bin(decNumber) {
+  // 1.定义栈对象
+  let stack = new Stack()
+
+  // 2. 循环操作
+  while(decNumber > 0) {
+    // 2.1.获取余数，并且放入到栈中
+    stack.push(decNumber % 2)
+
+    // 2.2.获取整除后的结果作为下一次的运算 
+    decNumber = Math.floor(decNumber / 2)
+  }
+
+  // 3.从栈中取出0和1
+  let bindaryString = '';
+  while(!stack.isEmpty()) {
+    bindaryString += stack.pop()
+  }
+  return bindaryString
+}
+
+// 测试
+console.log(dec2bin(100))
