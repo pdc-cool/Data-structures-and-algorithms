@@ -86,7 +86,7 @@ function LinkedList() {
     }
 
     // 4. 长度边长
-    
+    this.length += 1
   }
 }
 
