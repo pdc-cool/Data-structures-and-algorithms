@@ -48,3 +48,30 @@ class Queue {
 }
 
 let queue = new Queue()
+
+// 击鼓传花算法
+function passGame(nameList, num) {
+  // 1.创建一个队列结构
+  let queue = new Queue()
+
+  // 2.将所有人加入队列
+  for (var i = 0; i < nameList.length; i++) {
+    queue.enqueue(nameList[i])
+  }
+
+  // 3.开始数数字
+  while(queue.size() > 1) {
+    // 不是num时候，重新加入到队列的末尾
+    // 是num这个数字的时候，将其从队列中删除
+    // 3.1.num数字之前的人重新放入队列末尾
+    for (var i = 0; i < num - 1; i++) {
+      queue.enqueue(queue.dequeue())
+    }
+    // 3.2.num对应这个人，直接删除
+    queue.dequeue()
+  }
+
+  // 4.获取剩下的那个人
+  let endName = queue.front()
+  return nameList.indexOf(endName)
+}
