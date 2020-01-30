@@ -28,7 +28,7 @@ function PriorityQueue() {
     } else {
       var added = false
       for (var i = 0; i < this.items.length; i++) {
-        if (queueElement.priority < this.items[i]) {
+        if (queueElement.priority < this.items[i].priority) {
           this.items.splice(i, 0, queueElement)
           added = true
           break
@@ -44,3 +44,7 @@ function PriorityQueue() {
 
 // 测试代码
 let pq = new PriorityQueue()
+pq.enqueue('abc', 111)
+pq.enqueue('cba', 200)
+pq.enqueue('nba', 50)
+pq.enqueue('nba', 66)
