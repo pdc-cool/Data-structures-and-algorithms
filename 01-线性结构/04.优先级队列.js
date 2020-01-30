@@ -10,7 +10,7 @@
 function PriorityQueue() {
   // 在 PriorityQueue 重新创建一个类：可以理解为内部类
   function QueueElement(element, priority) {
-    this.element = element 
+    this.element = element
     this.priority = priority
   }
 
