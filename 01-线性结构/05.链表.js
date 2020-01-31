@@ -70,8 +70,10 @@ function LinkedList() {
     let newNode = new Node(data)
 
     // 3.判断插入的位置是否是第一个
-    if (position == 0) {
+    // 个人疑问：下面的实现默认的是链表中是存在数据的，若是链表中没有数据，以下所谓的 insert 应该先将数据添加到链表中然后再是插入的逻辑
+    if (position == 0) { // 这块进行了逻辑运算的处理
       newNode.next = this.head
+      this.head = newNode
     } else {
       let index = 0
       let current = this.head
@@ -87,6 +89,95 @@ function LinkedList() {
 
     // 4. 长度边长
     this.length += 1
+  }
+
+  // 4.get 方法
+  LinkedList.prototype.get = function (position) {
+    // 1.越界判断
+    if (position < 0 || position >= this.length) return null
+
+    // 2.获取对应的 data
+    let current = this.head
+    let index = 0
+    while (index++ < position) {
+      current = current.next
+    }
+
+    return current.data
+  }
+
+  // 5.indexOf 方法
+  LinkedList.prototype.indexOf = function (data) {
+    // 1.定义变量
+    let current = this.head
+    let index = 0
+
+    // 2.开始查找
+    while (current) {
+      if (current.data == data) return index
+
+      current = current.next
+      index++
+    }
+
+    // 3.找到最后没有找到，返回-1
+    return -1
+  }
+
+  // 6.update 修改数据
+  LinkedList.prototype.update = function (position, newData) {
+    // 1.越界判断
+    if (position < 0 || position >= this.length) return false
+    
+    // 2.查找正确的节点
+    let current = this.head
+    let index = 0
+    while (index++ < position) {
+      current = current.next
+    }
+
+    // 3.将 position 位置的数据改为新数据
+    current.data = newData
+
+    // 4.告诉外界，修改成功
+    return true
+  }
+
+  // 7.removeAt 方法
+  LinkedList.prototype.removeAt = function (position) {
+    // 1.越界判断
+    if (position < 0 || position >= this.length) return null
+
+    // 2.循环对应位置
+    if (position == 0) {
+      this.head = this.head.next
+    } else {
+      let current = this.head
+      let previous = null
+      let index = 0
+      while (index++ < position) {
+        previous = current
+        current = current.next
+      }
+
+      // 前一个节点的 next 指向 current 的 next 即可
+      previous.next = current.next
+    }
+
+    // 3.length 变短
+    this.length -= 1
+
+    // 删除成功
+    return true
+  }
+
+  // 8.remove 方法
+  LinkedList.prototype.remove = function (data) {
+    // 1.获取 data 在列表中的位置
+    let position = this.indexOf(data)
+
+    // 2.根据位置信息删除节点
+    return this.removeAt(position)
   }
 }
 

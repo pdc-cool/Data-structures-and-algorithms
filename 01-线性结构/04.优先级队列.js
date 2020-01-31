@@ -19,7 +19,7 @@ function PriorityQueue() {
 
   // 实现插入方法
   PriorityQueue.prototype.enqueue = function (element, priority) {
-    // 1.创建 QueueElement 对象
+    // 1.创建 queueElement 对象
     let queueElement = new QueueElement(element, priority)
 
     // 2.判断队列是否为空
