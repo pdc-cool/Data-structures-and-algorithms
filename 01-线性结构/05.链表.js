@@ -179,6 +179,16 @@ function LinkedList() {
     // 2.根据位置信息删除节点
     return this.removeAt(position)
   }
+
+  // 9.isEmpty 方法
+  LinkedList.prototype.isEmpty = function () {
+    return this.length == 0
+  }
+
+  // 10.size 方法
+  LinkedList.prototype.size = function () {
+    return this.length
+  }
 }
 
 // 测试代码
